@@ -6,12 +6,12 @@ require("dotenv").config();
 const marvelApiUrl = "https://lereacteur-marvel-api.herokuapp.com/";
 
 router.get("/marvel/:endpoint", async (req, res) => {
-	const { endpoint } = req.params;
+	const { endpoint, id } = req.params;
 	const { query } = req;
 
 	try {
 		const response = await axios.get(
-			`${marvelApiUrl}${endpoint}?apiKey=${process.env.MARVEL_API_KEY}`,
+			`${marvelApiUrl}${endpoint}/${id}?apiKey=${process.env.MARVEL_API_KEY}`,
 			{
 				params: { ...query },
 			}
