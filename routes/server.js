@@ -9,12 +9,21 @@ router.get("/marvel/:endpoint/:id?", async (req, res) => {
 	const { endpoint, id } = req.params;
 	const { query } = req;
 
+	// Extract skip, limit, and name from the query parameters
+	const { skip, limit, name } = query;
+
 	try {
 		const apiUrl = id
 			? `${marvelApiUrl}${endpoint}/${id}`
 			: `${marvelApiUrl}${endpoint}`;
 		const response = await axios.get(apiUrl, {
-			params: { ...query, apiKey: process.env.MARVEL_API_KEY },
+			params: {
+				...query,
+				apiKey: process.env.MARVEL_API_KEY,
+				skip,
+				limit,
+				name,
+			},
 		});
 
 		console.log("Marvel API response:", response.data);
