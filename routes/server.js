@@ -10,7 +10,7 @@ router.get("/marvel/:endpoint/:id?", async (req, res) => {
 	const { query } = req;
 
 	// Extract skip, limit, and name from the query parameters
-	const { skip, limit, name } = query;
+	const { skip, limit, name, title } = query;
 
 	try {
 		const apiUrl = id
@@ -23,6 +23,7 @@ router.get("/marvel/:endpoint/:id?", async (req, res) => {
 				skip,
 				limit,
 				name,
+				title,
 			},
 		});
 
